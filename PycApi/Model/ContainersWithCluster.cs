@@ -4,14 +4,14 @@ namespace PycApi.Model
 {
     public class ContainersWithDistance
     {
-        public ContainersWithDistance(List<Container> containers, double distance)
+        public ContainersWithDistance(List<Container> containers, double cluster)
         {
             Containers = containers;
-            Distance = distance;
+            Cluster = cluster;
         }
 
         public List<Container> Containers { get; set; }
-        public double Distance { get; set; }
+        public double Cluster { get; set; }
     }
 }
 
