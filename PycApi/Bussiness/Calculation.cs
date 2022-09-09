@@ -7,7 +7,7 @@ namespace PycApi.Bussiness
 {
     public static class Calculation
     {
-        public static ContainersWithDistance GetDistance(Container container1, Container container2)
+        public static ContainersWithCluster GetDCluster(Container container1, Container container2)
         {
             //değerler radyana dönüştürülür
             var lat1 = container1.Latitude * Math.PI / 180;
@@ -18,7 +18,7 @@ namespace PycApi.Bussiness
             var dlat = lat2 - lat1; //koordinatlar farkı
             var dlon = lon2 - lon1; //koordinatlar farkı
 
-            var distance = 2 * Math.Asin
+            var Cluster = 2 * Math.Asin
                                (
                                   Math.Sqrt
                                   (
@@ -30,19 +30,19 @@ namespace PycApi.Bussiness
                                ) * 6371; // değerler km cinsine dönüşütürülür.
 
             var containers = new List<Container>() { container1, container2 };
-            var containersWithDistance = new ContainersWithDistance(containers, distance);
+            var containersWithCluster = new ContainersWithCluster(containers, Cluster);
 
-            return containersWithDistance;
+            return containersWithCluster;
         }
 
         // Kümeleme yapılır.
         // konteynerların ve uzaklıkların listesi çekilir.
         // uzaklık mesafeleri küçükten büyüğe olacak şekilde sıralanır
         // belirtilen küme sayısına uygun şekilde kümelenir.
-        public static List<List<ContainersWithDistance>> Cluster(List<ContainersWithDistance> list, int clusterCount)
+        public static List<List<ContainersWithCluster>> Cluster(List<ContainersWithCluster> list, int clusterCount)
         {
             var index = 0;
-            var clusteredList = list.OrderBy(c => c.Distance) // uzaklık mesafelerine göre sıralama yapılır.
+            var clusteredList = list.OrderBy(c => c.Cluster) // uzaklık mesafelerine göre sıralama yapılır.
                                     .GroupBy(s => index++ / clusterCount) // belirtilen küme sayısı değerine göre kümeleme yapılır.
                                     .Select(g => g.ToList()) // kümeler  listeye dönüştürülür.
                                     .ToList(); // kümelerin listesi oluşturulur.
