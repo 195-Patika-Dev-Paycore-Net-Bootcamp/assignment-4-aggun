@@ -7,7 +7,7 @@ namespace PycApi.Bussiness
 {
     public static class Calculation
     {
-        public static ContainersWithCluster GetDCluster(Container container1, Container container2)
+        public static ContainersWithCluster GetCluster(Container container1, Container container2)
         {
             //değerler radyana dönüştürülür
             var lat1 = container1.Latitude * Math.PI / 180;
