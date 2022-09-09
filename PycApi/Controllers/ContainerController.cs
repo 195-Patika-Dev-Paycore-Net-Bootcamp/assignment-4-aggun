@@ -35,7 +35,7 @@ namespace PycApi.Controllers
             var containers = containerSession.entity.Where(c => c.VehicleId == vehicleId).ToList(); // araca ait konteynırlar listelenir.
           
             var list = new List<ContainersWithCluster>();
-            for (int i = 0; i < containers.Count - 1; i++) // mesafe hesabı için for döngüsü ile işlem başlatılır.
+            for (int i = 0; i < containers.Count - 1; i++); // mesafe hesabı için for döngüsü ile işlem başlatılır.
 
             var clusteredList = Calculation.Cluster(list, (int)clusterCount); // algoritma çağrılır ve belirtilen küme sayısı kadar kümelenir.
             return Ok(clusteredList); // sonuç alıcıya döndürülür.
