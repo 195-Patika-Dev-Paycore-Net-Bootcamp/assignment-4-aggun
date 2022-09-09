@@ -26,7 +26,7 @@ namespace PycApi.Controllers
         }
 
         [HttpGet("{vehicleId}/{clusterCount}")]
-        public ActionResult<List<List<ContainersWithDistance>>> Get(long vehicleId, int clusterCount)
+        public ActionResult<List<List<ContainersWithCluster>>> Get(long vehicleId, int clusterCount)
         {
             
             var  vehicle =  vehicleSession.entity.Where(c => c.Id == vehicleId).FirstOrDefault(); // girilen  araç Id'sine araç alınır.
@@ -34,9 +34,8 @@ namespace PycApi.Controllers
 
             var containers = containerSession.entity.Where(c => c.VehicleId == vehicleId).ToList(); // araca ait konteynırlar listelenir.
           
-            var list = new List<ContainersWithDistance>();
+            var list = new List<ContainersWithCluster>();
             for (int i = 0; i < containers.Count - 1; i++) // mesafe hesabı için for döngüsü ile işlem başlatılır.
-                list.Add(Calculation.GetDistance(containers[i], containers[i + 1])); // sonuç  uzaklıkla  beraber eklenir.
 
             var clusteredList = Calculation.Cluster(list, (int)clusterCount); // algoritma çağrılır ve belirtilen küme sayısı kadar kümelenir.
             return Ok(clusteredList); // sonuç alıcıya döndürülür.
