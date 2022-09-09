@@ -2,9 +2,9 @@
 
 namespace PycApi.Model
 {
-    public class ContainersWithDistance
+    public class ContainersWithCluster
     {
-        public ContainersWithDistance(List<Container> containers, double cluster)
+        public ContainersWithCluster(List<Container> containers, double cluster)
         {
             Containers = containers;
             Cluster = cluster;
